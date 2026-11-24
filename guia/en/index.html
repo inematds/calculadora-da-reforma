@@ -70,6 +70,10 @@
   .hero h1{font-size:clamp(2.1rem,4.6vw,3.3rem);font-weight:800;letter-spacing:-.025em}
   .hero p.lead{font-size:1.15rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:44ch}
   .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .oficial{display:inline-flex;align-items:center;gap:12px;margin-top:18px;padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg2);color:var(--txt);font-size:.92rem;max-width:100%}
+  .oficial img{width:40px;height:40px;border-radius:8px;background:#fff;flex:none}
+  .oficial small{display:block;color:var(--mut,#9a9aa6);font-size:.8rem}
+  .quem-img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:12px;margin:0 0 14px;display:block;border:1px solid var(--line)}
   .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
   .hero figure img{width:100%;height:auto;display:block}
   .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
@@ -181,6 +185,7 @@
 <a class="btn" href="#explicado">What you get</a>
 <a class="btn ghost" href="#comecar">How to get started</a>
 </div>
+<a class="oficial" href="https://github.com/ReceitaFederal" rel="noopener" target="_blank"><img alt="Receita Federal logo" src="../assets/receita-github.jpg"/><span>Official code on the GitHub account of <strong>Receita Federal</strong>: github.com/ReceitaFederal<small>The logo shows where the code comes from. This kit is from INEMA, not Receita Federal.</small></span></a>
 </div>
 <figure><img alt="Open calculator: check whether your system calculates CBS and IBS correctly before 2027" src="../assets/banner-en.jpg"/></figure>
 </div>
@@ -210,10 +215,10 @@
 <h2>What each person <span class="amb">earns</span></h2>
 <p class="sub">The same program works for four different people. Find yours.</p>
 <div class="grid g2">
-<div class="card"><h3>🏢 Business (owner, finance, purchasing)</h3><p><strong>What you get:</strong> a way to check the invoicing system before 2027. If the company’s software calculates something different from the official engine, you find out now, not when you’re audited.</p><p><strong>And more:</strong> simulate the price using the rate the Senate has yet to set.</p></div>
-<div class="card"><h3>📒 Accountant and accounting firm</h3><p><strong>What you get:</strong> an independent second opinion on the client’s system. Did it come out differently? The engine shows why: the product classification, the reduction, and the code that doesn’t match.</p><p><strong>And more:</strong> a <strong>calculation details with the law article</strong>, ready for review or to explain to the client.</p></div>
-<div class="card"><h3>💻 Developer, ERP, invoice issuer</h3><p><strong>What you get:</strong> the reference for testing your own code. Same request, your program and the Federal Revenue Service's, and the difference reported down to the cent.</p><p><strong>And more:</strong> the engine also generates and validates the tax section of the invoice XML and creates the service invoice PDF. You can embed it in your product (MIT), without using the Receita name.</p></div>
-<div class="card"><h3>🙋 Individual, student, curious person</h3><p><strong>What you get:</strong> see for yourself how consumption tax is calculated, item by item, in plain language: "base R$ 1.200, rate 8,8%, reduction 60%, Art. 129".</p><p><strong>And more:</strong> change a tax rate and see its effect on the calculation.</p></div>
+<div class="card"><img alt="Small business owner checks two values side by side on a laptop" class="quem-img" loading="lazy" src="../assets/quem-empresa.jpg"/><h3>🏢 Business (owner, finance, purchasing)</h3><p><strong>What you get:</strong> a way to check the invoicing system before 2027. If the company’s software calculates something different from the official engine, you find out now, not when you’re audited.</p><p><strong>And more:</strong> simulate the price using the rate the Senate has yet to set.</p></div>
+<div class="card"><img alt="Accountant compares a spreadsheet with a client's report" class="quem-img" loading="lazy" src="../assets/quem-contador.jpg"/><h3>📒 Accountant and accounting firm</h3><p><strong>What you get:</strong> an independent second opinion on the client’s system. Did it come out differently? The engine shows why: the product classification, the reduction, and the code that doesn’t match.</p><p><strong>And more:</strong> a <strong>calculation details with the law article</strong>, ready for review or to explain to the client.</p></div>
+<div class="card"><img alt="Developer in front of code with tests passing" class="quem-img" loading="lazy" src="../assets/quem-dev.jpg"/><h3>💻 Developer, ERP, invoice issuer</h3><p><strong>What you get:</strong> the reference for testing your own code. Same request, your program and the Federal Revenue Service's, and the difference reported down to the cent.</p><p><strong>And more:</strong> the engine also generates and validates the tax section of the invoice XML and creates the service invoice PDF. You can embed it in your product (MIT), without using the Receita name.</p></div>
+<div class="card"><img alt="Student sees the tax calculation laid out in blocks on a laptop" class="quem-img" loading="lazy" src="../assets/quem-pessoa.jpg"/><h3>🙋 Individual, student, curious person</h3><p><strong>What you get:</strong> see for yourself how consumption tax is calculated, item by item, in plain language: "base R$ 1.200, rate 8,8%, reduction 60%, Art. 129".</p><p><strong>And more:</strong> change a tax rate and see its effect on the calculation.</p></div>
 </div>
 </div></section>
 <section id="dia"><div class="wrap">
@@ -237,7 +242,7 @@
 <h2>Three programs, <span class="amb">without jargon</span></h2>
 <p class="sub">It isn’t a website for looking things up. They’re “engines”: programs that run on your computer and respond when another program sends a request.</p>
 <div class="grid g3">
-<div class="card"><h3>🧮 Regular tax regime calculator</h3><p>É a <strong>official multiplication table</strong> of the new tax. You describe the sale (product, amount, city, date), and it returns the CBS, IBS, and Selective Tax for each item, with the calculation written out in Portuguese and the law article.</p></div>
+<div class="card"><h3>🧮 Regular tax regime calculator</h3><p>It is the <strong>official multiplication table</strong> of the new tax. You describe the sale (product, amount, city, date), and it returns the CBS, IBS, and Selective Tax for each item, with the calculation written out in Portuguese and the law article.</p></div>
 <div class="card"><h3>🏪 Simples Nacional calculator</h3><p>The same idea for those under Simples. You enter the effective rate from the Simples calculation, and it calculates the CBS and IBS for each invoice item.</p></div>
 <div class="card"><h3>🖨️ DANFSe generator</h3><p>É a <strong>printer</strong> for the service invoice. It receives the invoice file (XML) and returns the finished PDF, with a QR Code and receipt stub.</p></div>
 </div>
@@ -272,9 +277,9 @@
 <section id="comecar"><div class="wrap">
 <span class="chip">How to get started</span>
 <h2>Ask your AI <span class="amb">run the test</span></h2>
-<p class="sub">You don't need to install anything manually or understand the files. The AI reads the kit, runs the calculator on your computer, and shows you the result in Portuguese.</p>
+<p class="sub">You don't need to install anything manually or understand the files. The AI reads the kit, runs the calculator on your computer, and shows you the result in plain English.</p>
 <div class="grid g3">
-<div class="card"><h3>1. Open your AI on your computer</h3><p><strong>Claude Code</strong> (from Claude) or <strong>Codex</strong> (from ChatGPT): assistants that work on your computer and come with their own paid subscription. Both have versions for Windows and Mac, and each one’s website explains how to install it. They open in a text window, but you can just talk to them in Portuguese.</p></div>
+<div class="card"><h3>1. Open your AI on your computer</h3><p><strong>Claude Code</strong> (from Claude) or <strong>Codex</strong> (from ChatGPT): assistants that work on your computer and come with their own paid subscription. Both have versions for Windows and Mac, and each one’s website explains how to install it. They open in a text window, but you just talk to them in plain English.</p></div>
 <div class="card"><h3>2. Paste the prompt below</h3><p>It tells the AI to read the kit, check that the code is from the Receita, and run the example without changing anything on your system.</p></div>
 <div class="card"><h3>3. Read the table and decide</h3><p>It shows the calculation item by item, with “match” or “mismatch.” For your sales, fill out the kit’s sample spreadsheet with what your system calculated (you can use Excel and save it as CSV), and the AI compares the results. For each sale, the spreadsheet asks for the product code (NCM) or service code (NBS), the tax status code (CST), the new tax classification (cClassTrib), the item’s tax base, and the CBS and IBS calculated by your system. You can find all of this in the invoice XML or in your invoicing system.</p></div>
 </div>
@@ -290,6 +295,10 @@ Do not change anything in my system or my files. Show me the plan and wait for m
 <button class="btn" id="copiarPedido" style="margin-top:10px">Copy the prompt</button>
 </div>
 <div class="grid g2" style="margin-top:16px">
+<div class="card"><h3>🌐 Just want to use it without installing anything?</h3><p>The Receita Federal offers the same calculator on a website, with no login: open it in your browser, enter the sale, and see the CBS, IBS, and Selective Tax for each item. On 24/11/2026, the site was running version 1.7.2, the same as on GitHub.</p><p>What you enter there is sent to the Receita Federal website, and it's one sale at a time. The official engine test, which compares the entire spreadsheet with your system, runs on your computer.</p><p><a class="btn" href="https://piloto-cbs.tributos.gov.br/servico/calculadora-consumo/calculadora" rel="noopener" target="_blank">Open the online calculator</a></p></div>
+<div class="card"><h3>⬇️ Where can I download the program?</h3><p>Receita Federal doesn't publish a ready-to-install app: its GitHub releases contain only the code. That's why the prompt above tells the AI to download the code directly from Receita Federal and build the program on your computer, without you having to edit any files.</p><p>If you still want the files:</p><p><a class="btn ghost" href="https://github.com/inematds/calculadora-da-reforma/archive/refs/heads/main.zip">Download the kit (ZIP)</a> <a class="btn ghost" href="https://github.com/ReceitaFederal" rel="noopener" target="_blank">Receita Federal code</a></p></div>
+</div>
+<div class="grid g2" style="margin-top:16px">
 <div class="card"><h3>🤝 Don’t use AI on your computer?</h3><p>Take this guide to your IT team or invoicing system provider. Ask them to run the official engine test with your most common sales and return the table showing “same” or “different” for each item, along with the date and calculator version. This becomes your record that you checked.</p></div>
 <div class="card"><h3>💻 Windows, Mac, or Linux?</h3><p>The tax agency’s programs run on all three, and its repositories include commands for Windows. We tested only on Linux. The kit’s shortcuts are for Linux and Mac, so on Windows the AI may need an extra step: it follows the tax agency’s own Windows commands, and you can check the same table at the end.</p></div>
 </div>
@@ -303,7 +312,7 @@ Do not change anything in my system or my files. Show me the plan and wait for m
 <div class="grid g3">
 <div class="card"><h3>📜 The Ordinance</h3><p>Cotec Ordinance No. 342, dated 12/11/2026: authorizes opening the three repositories, records the verification codes for each initial version, and states that the publication provides no support and has no force of law.</p><p><a href="https://www.in.gov.br/web/dou/-/portaria-cotec-n-342-de-12-de-novembro-de-2026-744398356" rel="noopener" target="_blank">Official Gazette of the Union</a></p></div>
 <div class="card"><h3>📰 The announcement</h3><p>Receita explains why it made the code open: transparency, legal certainty, and an official component that can be connected to the systems companies already use.</p><p><a href="https://www.gov.br/receitafederal/pt-br/assuntos/noticias/2026/novembro/receita-federal-publica-primeiro-codigo-fonte-aberto-no-github-e-amplia-transparencia-da-reforma-tributaria" rel="noopener" target="_blank">Receita Federal news</a></p></div>
-<div class="card"><h3>💾 The three repositories</h3><p><a href="https://github.com/ReceitaFederal/calculadora-rtc-regime-regular" rel="noopener" target="_blank">Regular tax regime</a> · <a href="https://github.com/ReceitaFederal/calculadora-rtc-simples-nacional" rel="noopener" target="_blank">Simples Nacional</a> · <a href="https://github.com/ReceitaFederal/calculadora-rtc-gerador-danfse" rel="noopener" target="_blank">DANFSe Generator</a>. Use only this address: a copy from somewhere else may have been altered.</p></div>
+<div class="card"><h3>💾 The three repositories</h3><p><a class="oficial" href="https://github.com/ReceitaFederal" rel="noopener" style="margin:0 0 12px" target="_blank"><img alt="Receita Federal logo" src="../assets/receita-github.jpg"/><span>github.com/ReceitaFederal<small>Receita Federal's official GitHub account</small></span></a></p><p><a href="https://github.com/ReceitaFederal/calculadora-rtc-regime-regular" rel="noopener" target="_blank">Regular tax regime</a> · <a href="https://github.com/ReceitaFederal/calculadora-rtc-simples-nacional" rel="noopener" target="_blank">Simples Nacional</a> · <a href="https://github.com/ReceitaFederal/calculadora-rtc-gerador-danfse" rel="noopener" target="_blank">DANFSe Generator</a>. Use only this address: a copy from somewhere else may have been altered.</p></div>
 </div>
 </div></section>
 <section id="prova"><div class="wrap">
@@ -330,7 +339,7 @@ Do not change anything in my system or my files. Show me the plan and wait for m
 <h2>Before you <span class="amb">get started</span></h2>
 <div class="grid g2">
 <div class="card"><h3>Do I need to know how to code?</h3><p>No. You paste in the request, and the AI does the rest. For your software vendor or IT team, the README has the commands.</p></div>
-<div class="card"><h3>Is this a Receita website for looking things up?</h3><p>No. The calculator is a program that runs on your computer: the calculation isn’t sent to the tax agency or to us. Note: if you use AI (Claude Code or Codex), anything it reads, including the spreadsheet with your sales, goes through its service. When using customer data, use sample sales or remove names and CNPJ numbers first, or ask your IT team to run it without AI.</p></div>
+<div class="card"><h3>Is this a Receita website for looking things up?</h3><p>Not the kit: it runs the calculator on your computer, and the calculation isn't sent to Receita Federal or to us. Receita Federal also offers the same calculator on a website (the link is under "How to get started"); what you enter there is sent to them. Note: if you use AI (Claude Code or Codex), anything it reads, including the spreadsheet with sales, passes through its service. If it contains client data, use sample sales or remove names and CNPJ numbers first, or ask IT to run it without AI.</p></div>
 <div class="card"><h3>If the engine gives a value, can I use it on the invoice?</h3><p>It’s a strong reference, but it isn’t law, and in 2027 the result is labeled “simulated” until the official rates are entered. Use it to check your calculations, and talk to your accountant.</p></div>
 <div class="card"><h3>How much does it cost?</h3><p>The kit, this guide, and the tax agency’s code (MIT free license) are free. The easiest way uses Claude Code or Codex, which come with a paid Claude or ChatGPT subscription. Without AI, your IT team can run everything at no software cost.</p></div>
 <div class="card"><h3>Does it work for businesses under Simples?</h3><p>Yes, there's a calculator just for Simples. It needs the effective tax rate, which comes from the monthly tax calculation (PGDAS-D).</p></div>

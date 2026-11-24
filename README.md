@@ -28,6 +28,14 @@ Depois, neste computador:
 Não mude nada no meu sistema nem nos meus arquivos. Mostre o plano e espere eu dizer sim.
 ```
 
+## Sem instalar: a calculadora online da Receita
+
+A Receita mantém a mesma calculadora num site, sem login: **[abrir a calculadora online](https://piloto-cbs.tributos.gov.br/servico/calculadora-consumo/calculadora)**. Em 24/11/2026 o site rodava a versão 1.7.2, a mesma do GitHub. Ali o que você digita vai para o site da Receita, e é uma venda por vez; o teste do motor oficial com a planilha inteira roda no seu computador.
+
+## Onde baixar
+
+A Receita não publica um instalador pronto: as versões no GitHub dela trazem só o código, e o `subir-calculadoras.sh` (ou a sua IA, pelo pedido acima) baixa e monta o programa. Os arquivos: [kit em ZIP](https://github.com/inematds/calculadora-da-reforma/archive/refs/heads/main.zip) · <a href="https://github.com/ReceitaFederal"><img src="guia/assets/receita-github.jpg" width="28" alt="Receita Federal" align="absmiddle"></a> código oficial em **[github.com/ReceitaFederal](https://github.com/ReceitaFederal)** (o logo indica de onde vem o código; este kit é do INEMA, não da Receita).
+
 ## O que tem aqui
 
 | Arquivo | Para quê |

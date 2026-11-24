@@ -28,6 +28,14 @@ Then, on this computer:
 Don’t change anything in my system or files. Show me the plan and wait for me to say yes.
 ```
 
+## No install: the Receita’s online calculator
+
+The Receita keeps the same calculator on a website, no login: **[open the online calculator](https://piloto-cbs.tributos.gov.br/servico/calculadora-consumo/calculadora)**. On 24/11/2026 the site ran version 1.7.2, the same as on GitHub. What you type there goes to the Receita’s site, one sale at a time; the official engine test with the whole spreadsheet runs on your computer.
+
+## Where to download
+
+The Receita does not publish a ready-made installer: its GitHub releases contain only the source code, and `subir-calculadoras.sh` (or your AI, with the request above) downloads and builds the program. Files: [kit as ZIP](https://github.com/inematds/calculadora-da-reforma/archive/refs/heads/main.zip) · <a href="https://github.com/ReceitaFederal"><img src="guia/assets/receita-github.jpg" width="28" alt="Receita Federal" align="absmiddle"></a> official code at **[github.com/ReceitaFederal](https://github.com/ReceitaFederal)** (the logo shows where the code comes from; this kit is by INEMA, not by the Receita).
+
 ## What’s included
 
 | File | Purpose |
