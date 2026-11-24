@@ -13,3 +13,12 @@ Pedido do Nei (23/11): repo + projeto explicando os 3 repos da Receita (RTC regi
 2. Portal (skill atualiza-portal) + Telegram INEMA.VIBE (skill postar-telegram).
 3. CONTINUAR.md nas 2 pastas de vídeo + continua --add (fase 2: Metricool lives4→inema.tds IG+TikTok, lives8→VIBE TikTok; embed no #video do guia PT/EN/ES + README; portal de vídeo; resposta no tópico INEMA.VIBE).
 4. Memória project_calculadora_da_reforma.md + PRODUCOES-VIDEO.md.
+
+## Atualização 23:05
+- Revisor R1 (persona Márcia, contadora 46, não programa; MESMA lista fixa) reprovou nota 6; corrigido em 8cf0075 (passo 1 explica Claude Code/Codex, cards TI/fornecedor e Windows, teste com planilha CSV testado, +2.300 estrelas em MEDICOES, termos explicados). Registrado no revisor-nota.
+- PRÓXIMO 1: revisor R2 NOVO, mesma persona e lista (pedido igual ao R1; ver runbook). Captura 390 px com ~/.cache/ms-playwright/chromium-1254/chrome-linux-arm64/chrome.
+- PRÓXIMO 2: portal JÁ EDITADO e NÃO publicado: courses.ts (projectUpdatesData), Portal.tsx (communityProjects), translated-courses.ts (id 10260 en/es), gen:data feito; enrichment.json do inemapro-mono com projeto:calculadora-da-reforma-guia (inserido no início, formato de 1 linha). Falta: bash ~/.claude/skills/atualiza-portal/scripts/publica.sh "calculadora-da-reforma" (+ testes do portal p/ translated).
+- PRÓXIMO 3: Telegram INEMA.VIBE (skill postar-telegram), tópico do kit; depois link dos vídeos.
+- PRÓXIMO 4: CONTINUAR.md nas pastas explicavideos/textos/calculadora-da-reforma-lives4 e -lives8 (modelo: textos/sem-cara-de-ia-lives8/CONTINUAR.md; Metricool lives4→inema.tds IG+TikTok, lives8→VIBE só TikTok inema.prompts; embed #video no guia PT/EN/ES + README; portal de vídeo; resposta no tópico INEMA.VIBE) + `python3 ~/projetos/wifi/continua/continua.py --add ...` para cada.
+- PRÓXIMO 5: memória project_calculadora_da_reforma.md + linha no MEMORY.md + PRODUCOES-VIDEO.md.
+- Cadeias de vídeo rodando: systemctl --user status ev-calculadora-reforma-lives4 / -lives8; cadeia.log nas pastas.
