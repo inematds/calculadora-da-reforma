@@ -1,0 +1,19 @@
+{
+  "id": "inema-exemplo-simples-0001",
+  "versao": "2.0.0",
+  "data": "2027-03-15",
+  "tpDoc": "55",
+  "CRT": "1",
+  "itens": [
+    {
+      "numero": 1,
+      "cAtivSN": "01",
+      "cClassTrib": "000001",
+      "ncm": "61091000",
+      "baseCalculo": "1000.00",
+      "valorImpostoSeletivo": "0.00",
+      "pIBSSN": "1.25",
+      "pCBSSN": "2.75"
+    }
+  ]
+}

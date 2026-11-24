@@ -1,0 +1,35 @@
+<NFSe versao="1.00">
+	<infNFSe Id="NFS35503082212345678000195000000000000126110000000001" dhProc="2026-11-23T10:00:00-03:00">
+		<xLocEmi>Sao Paulo</xLocEmi>
+		<nNFSe>1</nNFSe>
+		<ambGer>2</ambGer>
+		<DPS>
+			<infDPS>
+				<nDPS>1</nDPS>
+				<serie>1</serie>
+				<dhEmi>2026-11-23T10:00:00-03:00</dhEmi>
+				<dCompet>2026-11-23</dCompet>
+				<tpEmit>1</tpEmit>
+				<tpAmb>2</tpAmb>
+				<prest><regTrib><opSimpNac>1</opSimpNac></regTrib></prest>
+				<toma>
+					<CNPJ>98765432000198</CNPJ>
+					<xNome>Cliente Exemplo Ltda (ficticio)</xNome>
+				</toma>
+				<serv>
+					<cServ><cTribNac>010101</cTribNac><xDescServ>Consultoria de exemplo (nota ficticia, ambiente de teste)</xDescServ></cServ>
+				</serv>
+				<valores>
+					<vServPrest><vServ>1000.00</vServ></vServPrest>
+					<trib></trib>
+				</valores>
+			</infDPS>
+		</DPS>
+		<emit>
+			<CNPJ>12345678000195</CNPJ>
+			<xNome>Prestador Exemplo ME (ficticio)</xNome>
+			<enderNac><cMun>3550308</cMun><CEP>01001000</CEP></enderNac>
+		</emit>
+		<valores><vLiq>1000.00</vLiq></valores>
+	</infNFSe>
+</NFSe>

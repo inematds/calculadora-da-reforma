@@ -1,0 +1,3 @@
+motores/
+*.log
+__pycache__/

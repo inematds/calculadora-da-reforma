@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Is your system calculating the new tax correctly? Check it with the Receita’s open calculator</title>
+<meta content="Free, unofficial kit that explains and helps you run the 3 programs released by the Receita Federal: the CBS, IBS, and Selective Tax calculator, the Simples Nacional program, and the DANFSe generator. Test the official engine for businesses, accountants, and developers." name="description"/>
+
+
+
+<meta content="Open calculator: check whether your system calculates CBS and IBS correctly" property="og:title"/>
+<meta content="Receita opened the calculator it uses. Run the same invoice through your system and the calculator, and see if the results match. Free kit." property="og:description"/>
+<meta content="https://inematds.github.io/calculadora-da-reforma/guia/assets/banner.jpg" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#FACC15; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    --fill:#FACC15; --tint:rgba(250,204,21,.12); --ok:#7CE0C6; --bad:#F0918A;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#a16207; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    --fill:#FACC15; --tint:#FEF9C3; --ok:#0E6B55; --bad:#A83426;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  body.light pre .k{color:#f0c070}
+  body.light nav{background:rgba(246,247,249,.85)}
+  body.light .amb{color:var(--txt);background:linear-gradient(transparent 55%,#FACC15 55%)}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  body.light main a:not(.btn),body.light footer a{color:#854d0e;text-decoration:underline;text-decoration-color:#FACC15;text-decoration-thickness:3px}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  p code,li code,td code{font-size:.9em;background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:.05em .35em}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb);white-space:nowrap}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:var(--tint)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--fill);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  nav .links a.sec{white-space:nowrap}
+  @media(max-width:1360px){nav .links a.opt{display:none}}
+  @media(max-width:860px){nav .links a.sec{display:none}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(250,204,21,.18),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.1rem,4.6vw,3.3rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.15rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:44ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:66ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;min-width:0}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.95rem;margin:0}
+  .card p+p{margin-top:.6em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0;margin:.4em 0 0}
+  pre .c{color:#7d7d8a} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:28px}
+  .step>div{min-width:0}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--fill);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .5em}
+  .quem{display:inline-block;font-family:Sora;font-size:.75rem;letter-spacing:.06em;color:var(--txt);background:var(--tint);border:1px solid var(--line);border-radius:999px;padding:.1em .7em;margin-left:.5em;vertical-align:middle;font-weight:600}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:4px}
+  /* números */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+  @media(max-width:720px){.stats{grid-template-columns:1fr}}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .stat b{display:block;font:800 clamp(1.9rem,4vw,2.6rem)/1.05 Sora,sans-serif;letter-spacing:-.02em;color:var(--amb)}
+  body.light .stat b{color:var(--txt)}
+  .stat span{display:block;color:var(--mut);font-size:.93rem;margin-top:.5em}
+  .fonte{font-size:.86rem;color:var(--mut);margin-top:14px;max-width:80ch}
+  /* trocas */
+  .troca{display:grid;grid-template-columns:64px minmax(0,1fr);gap:18px;padding:26px 0;border-top:1px solid var(--line)}
+  .troca:first-of-type{border-top:none}
+  .troca .n{width:64px;height:64px;border-radius:14px;border:1px solid var(--line);background:var(--card);display:flex;align-items:center;justify-content:center;font:800 1.6rem Sora,sans-serif;color:var(--amb)}
+  body.light .troca .n{color:var(--txt);background:var(--fill);border-color:var(--fill)}
+  .troca h3{font-size:1.3rem;margin-bottom:.35em}
+  .troca p{margin:.35em 0;max-width:72ch}
+  .troca .ex{margin-top:.8em;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--fill);border-radius:10px;padding:12px 16px;font-size:.95rem;color:var(--mut);max-width:76ch}
+  .troca .ex b{color:var(--txt)}
+  @media(max-width:540px){.troca{grid-template-columns:1fr}}
+  /* três finais */
+  .vs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px;max-width:900px}
+  @media(max-width:720px){.vs{grid-template-columns:1fr}}
+  .vs div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:.93rem}
+  .vs strong{display:block;font-family:Sora;margin-bottom:.25em}
+  .vs .r{display:block;margin-top:.5em;font-weight:600}
+  .vs .r.bad{color:var(--bad)} .vs .r.ok{color:var(--ok)}
+  .card ul{margin:8px 0 0;padding-left:20px}.card li{margin:5px 0}
+  /* prova */
+  .prova{background:var(--card);border:1px solid var(--amb);border-radius:16px;padding:26px 26px 22px;margin-top:6px}
+  body.light .prova{border-color:#EAB308}
+  .tl{list-style:none;margin:0;padding:0;counter-reset:t}
+  .tl li{position:relative;padding:0 0 18px 48px;counter-increment:t}
+  .tl li::before{content:counter(t);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:10px;background:var(--fill);color:#1a1206;font:800 .95rem/32px Sora,sans-serif;text-align:center}
+  .tl li::after{content:"";position:absolute;left:15px;top:36px;bottom:4px;width:2px;background:var(--line)}
+  .tl li:last-child::after{display:none}
+  .tl b{font-family:Sora}
+  blockquote{margin:6px 0 0;padding:14px 18px;border-left:3px solid var(--fill);background:var(--bg2);border-radius:0 10px 10px 0;font-size:1.02rem}
+  .prova .rod{font-size:.86rem;color:var(--mut);margin-top:14px}
+  /* parte técnica */
+  .techhead{background:var(--bg2);border-top:3px solid var(--fill);padding:58px 0 8px}
+  .techhead h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em;margin:.3em 0 0}
+  .techhead .sub{color:var(--mut);margin:.6em 0 1.2em;max-width:66ch}
+  .techzone{background:var(--bg2)}
+  .techzone .card{background:var(--card)}
+  .tbl{width:100%;border-collapse:collapse;font-size:.93rem}
+  .tbl th,.tbl td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  .tbl th{font-family:Sora;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+  .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+  @media(max-width:600px){.tbl thead{display:none} .tbl tr{display:block;border-bottom:1px solid var(--line);padding:6px 0} .tbl tr:last-child{border-bottom:none} .tbl td{display:block;border:none;padding:4px 14px}}
+</style>
+<body>
+<nav><div class="wrap">
+<a class="brand" href="#top"><span class="emoji">🧮</span> Open calculator</a>
+<span class="sep">|</span>
+<span class="clubpro">
+<a class="inema" href="https://inema.club" rel="noopener" target="_blank">INEMA.CLUB</a>
+<span class="sep">-</span>
+<a class="pro" href="https://inema.pro" rel="noopener" target="_blank">PRO</a>
+</span>
+<div class="links">
+<a class="sec" href="#explicado">The benefit</a>
+<a class="sec" href="#quem">Who it's for</a>
+<a class="sec opt" href="#como">How it works</a>
+<a class="sec" href="#novidades">What’s new</a>
+<a class="sec" href="#comecar">How to get started</a>
+<a class="sec opt" href="#base">Official source</a>
+<a class="sec opt" href="#prova">The proof</a>
+<span class="lang"><a class="on" href="./">EN</a><a class="on" href="./">EN</a><a href="../es/">ES</a></span>
+<button aria-label="Toggle theme" class="tgl" id="themeToggle" title="Toggle theme">🌙</button>
+<a class="btn" href="https://github.com/inematds/calculadora-da-reforma" rel="noopener" target="_blank">GitHub</a>
+</div>
+</div></nav>
+<header class="hero" id="top">
+<div class="glow"></div>
+<div class="wrap">
+<div>
+<span class="chip">Based on Receita Federal’s open-source code · free, unofficial kit</span>
+<h1>Is your system calculating the new tax correctly? <span class="amb">Now you can check</span> with the Federal Revenue Service's own calculator</h1>
+<p class="lead">In January 2027, CBS starts being charged in place of PIS and Cofins. The Receita released the program it uses to calculate the tax. Run the same invoice in your system and in this program, and see right away whether the amount matches, item by item, with the relevant article of the law alongside it.</p>
+<div class="cta">
+<a class="btn" href="#explicado">What you get</a>
+<a class="btn ghost" href="#comecar">How to get started</a>
+</div>
+</div>
+<figure><img alt="Open calculator: check whether your system calculates CBS and IBS correctly before 2027" src="../assets/banner-en.jpg"/></figure>
+</div>
+</header>
+<main>
+<section class="resumo" id="resumo"><div class="wrap">
+<span class="chip">In one sentence</span>
+<p><strong>This kit explains and helps you get the three programs that the Receita Federal released on GitHub in November 2026 up and running:</strong> the CBS, IBS, and Selective Tax calculator (for businesses under the regular tax regime), the Simples Nacional calculator, and the service invoice PDF generator (DANFSe). It's for businesses, accountants, developers, and curious people. The kit includes the <strong>official engine test</strong>: the same transaction calculated in your system and in Receita’s program, side by side, with the difference identified. Ask your AI to read the kit and show you the result. If you prefer to do it manually, you need a computer with Java 25. This is not a Receita product: it’s an INEMA kit built on its open-source code (<a href="#base">see the sources</a>).</p>
+<figure style="margin:22px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img alt="Open calculator: what was made open, who it’s for, testing the official engine, November updates, how to get started, free at inema.club" loading="lazy" src="../assets/banner-grade-en.jpg" style="width:100%;display:block"/></figure>
+</div></section>
+<section id="explicado"><div class="wrap">
+<span class="chip">The benefit</span>
+<h2>Before and after Receita <span class="amb">open the code</span></h2>
+<div class="grid g2">
+<div class="card"><h3>😟 Before</h3><p>Calculating the new tax used to be a <strong>black box</strong>. You trusted the company’s system, which trusted the vendor, who read the law and technical notes and hoped they had understood them.</p><p>If it was wrong, you would only find out when the invoice was rejected or during an audit.</p></div>
+<div class="card"><h3>😌 Now</h3><p>The program the Receita uses is open source, with a free license (MIT). Anyone can download it, run it on their own computer, and <strong>checks</strong>.</p><p>A difference of a few cents appears before issuing, along with the reason: the rate, the reduction, the law article, and the code that doesn’t match.</p></div>
+</div>
+<div class="stats">
+<div class="stat"><b>2027</b><span>the CBS starts being collected and replaces PIS and Cofins. Only weeks remain.</span></div>
+<div class="stat"><b>3</b><span>open-source programs: regular tax regime calculator, Simples Nacional calculator, and service invoice PDF generator.</span></div>
+<div class="stat"><b>+2.300</b><span>stars and more than 600 copies (forks) on GitHub in the first week: the market is already using it.</span></div>
+</div>
+<p class="fonte">Stars and forks counted across the three repositories on 23/11/2026.</p>
+</div></section>
+<section id="quem"><div class="wrap">
+<span class="chip">Who it's for</span>
+<h2>What each person <span class="amb">earns</span></h2>
+<p class="sub">The same program works for four different people. Find yours.</p>
+<div class="grid g2">
+<div class="card"><h3>🏢 Business (owner, finance, purchasing)</h3><p><strong>What you get:</strong> a way to check the invoicing system before 2027. If the company’s software calculates something different from the official engine, you find out now, not when you’re audited.</p><p><strong>And more:</strong> simulate the price using the rate the Senate has yet to set.</p></div>
+<div class="card"><h3>📒 Accountant and accounting firm</h3><p><strong>What you get:</strong> an independent second opinion on the client’s system. Did it come out differently? The engine shows why: the product classification, the reduction, and the code that doesn’t match.</p><p><strong>And more:</strong> a <strong>calculation details with the law article</strong>, ready for review or to explain to the client.</p></div>
+<div class="card"><h3>💻 Developer, ERP, invoice issuer</h3><p><strong>What you get:</strong> the reference for testing your own code. Same request, your program and the Federal Revenue Service's, and the difference reported down to the cent.</p><p><strong>And more:</strong> the engine also generates and validates the tax section of the invoice XML and creates the service invoice PDF. You can embed it in your product (MIT), without using the Receita name.</p></div>
+<div class="card"><h3>🙋 Individual, student, curious person</h3><p><strong>What you get:</strong> see for yourself how consumption tax is calculated, item by item, in plain language: "base R$ 1.200, rate 8,8%, reduction 60%, Art. 129".</p><p><strong>And more:</strong> change a tax rate and see its effect on the calculation.</p></div>
+</div>
+</div></section>
+<section id="dia"><div class="wrap">
+<span class="chip">In your day-to-day work</span>
+<h2>How this changes your <span class="amb">work</span></h2>
+<div class="grid g2">
+<div class="card"><h3>🧾 "Will the January invoice be correct?"</h3><p><strong>Today:</strong> you ask the system vendor, and they say "it’s already adapted".</p><p><strong>With the kit:</strong> you take the company’s ten most common sales, run them through the official engine, and compare. Same: carry on. Different: take the evidence to the vendor.</p></div>
+<div class="card"><h3>📚 "Does this service get a reduction?"</h3><p><strong>Today:</strong> you look through the law and appendices, and you’re left unsure.</p><p><strong>With the kit:</strong> the engine gives you the reduction and the article. In our test, an education service got a 60% reduction, and an example system that forgot the reduction charged more than twice as much.</p></div>
+<div class="card"><h3>💰 "How much will my price go up?"</h3><p><strong>Today:</strong> each news story gives a different number.</p><p><strong>With the kit:</strong> you run the same sale at 8,8% and 11,3%, the two figures being considered, and see the difference in your case.</p></div>
+<div class="card"><h3>🔌 "Does our system need to recalculate?"</h3><p><strong>Today:</strong> the team writes everything from scratch based on the technical notes.</p><p><strong>With the kit:</strong> the team connects the open-source engine as a test judge, and every new Receita version becomes an automated test.</p></div>
+</div>
+</div></section>
+<section id="video"><div class="wrap">
+<span class="chip">In video</span>
+<h2>Understand it in a few minutes</h2>
+<!-- VIDEO: entra o explicavideo do projeto quando publicado -->
+<p class="sub">The explainer video will appear here as soon as it is published.</p>
+</div></section>
+<section id="como"><div class="wrap">
+<span class="chip">How it works</span>
+<h2>Three programs, <span class="amb">without jargon</span></h2>
+<p class="sub">It isn’t a website for looking things up. They’re “engines”: programs that run on your computer and respond when another program sends a request.</p>
+<div class="grid g3">
+<div class="card"><h3>🧮 Regular tax regime calculator</h3><p>É a <strong>official multiplication table</strong> of the new tax. You describe the sale (product, amount, city, date), and it returns the CBS, IBS, and Selective Tax for each item, with the calculation written out in Portuguese and the law article.</p></div>
+<div class="card"><h3>🏪 Simples Nacional calculator</h3><p>The same idea for those under Simples. You enter the effective rate from the Simples calculation, and it calculates the CBS and IBS for each invoice item.</p></div>
+<div class="card"><h3>🖨️ DANFSe generator</h3><p>É a <strong>printer</strong> for the service invoice. It receives the invoice file (XML) and returns the finished PDF, with a QR Code and receipt stub.</p></div>
+</div>
+<div class="card" style="margin-top:16px"><h3>🔍 The official engine test</h3><p>It’s the centerpiece of the kit. It works like checking a restaurant bill with your own calculator: you enter the same transaction in your system and in the Receita engine, and a table shows each item as "same" or "different," with the reason. You can also run the same sale with different rates and compare.</p></div>
+<div class="card" style="margin-top:16px"><h3>⚠️ What it is NOT</h3><ul>
+<li><strong>It isn’t law.</strong> The Ordinance itself says the code has no regulatory effect. The company remains responsible for the tax.</li>
+<li><strong>It isn’t supported by the Receita</strong> no promise of maintenance for the public, either.</li>
+<li><strong>It doesn’t update itself</strong> in the company's system: someone needs to bring in each new version and test it.</li>
+<li><strong>It doesn’t issue invoices.</strong> Calculates, checks the tax section, and generates the service invoice PDF.</li>
+<li><strong>The Receita name doesn’t come with it:</strong> the license lets you use the code, but not the name or symbols to claim a product is official.</li>
+</ul></div>
+</div></section>
+<section id="novidades"><div class="wrap">
+<span class="chip">What’s most recent</span>
+<h2>November brought changes <span class="amb">the game</span></h2>
+<p class="sub">Checked on 23/11/2026. The rules are changing during the transition through 2033: open the official source before deciding.</p>
+<div class="prova">
+<ol class="tl">
+<li><b>10/11 · TCU recommends a CBS rate of 11.3%</b><br/><span class="mut">The study went to the Senate, which sets the reference rate by 15/12. It isn’t the final rate yet.</span></li>
+<li><b>13/11 · Ordinance opens the three programs</b><br/><span class="mut">Published in the Official Gazette with the verification codes for each initial version. MIT License, no support, and no force of law.</span></li>
+<li><b>16/11 · Receita announces the code on GitHub</b><br/><span class="mut">You could already download it from the CBS Platform. Now there’s a history, versions, and the public can report errors.</span></li>
+<li><b>17/11 · Fazenda cites an average effective rate of 8.5%</b><br/><span class="mut">It’s an average estimate, different from the reference rate. It doesn’t mean every price will change by 8,5%.</span></li>
+<li><b>19 and 20/11 · Both calculators have already received a new version</b><br/><span class="mut">The regular-regime calculator fixed the rounding: before, the total might not match the sum of the items, and the invoice would be rejected. A difference of a few cents for those already integrated.</span></li>
+</ol>
+</div>
+<div class="grid g3" style="margin-top:16px">
+<div class="card"><h3>📌 For the business</h3><p>Try the most common sales now. Run it again when the Senate publishes the tax rate.</p></div>
+<div class="card"><h3>📌 For the accountant</h3><p>For Simples, in November and December, PGDAS-D asks for the payroll for the last 12 months for all activities. In 2027, tax assessment will be based on the month in which the activity took place.</p></div>
+<div class="card"><h3>📌 For the developer</h3><p>Pin the engine version and record the date. Two versions have already been released in one week, and the repositories have a total of 35 open issues from the community.</p></div>
+</div>
+</div></section>
+<section id="comecar"><div class="wrap">
+<span class="chip">How to get started</span>
+<h2>Ask your AI <span class="amb">run the test</span></h2>
+<p class="sub">You don't need to install anything manually or understand the files. The AI reads the kit, runs the calculator on your computer, and shows you the result in Portuguese.</p>
+<div class="grid g3">
+<div class="card"><h3>1. Open your AI</h3><p>Claude Code or Codex, opened in a folder on your computer.</p></div>
+<div class="card"><h3>2. Paste the prompt below</h3><p>It tells the AI to read the kit, check that the code is from the Receita, and run the example without changing anything on your system.</p></div>
+<div class="card"><h3>3. Read the table and decide</h3><p>It shows the calculation item by item. If you want, send your transactions later so you can compare.</p></div>
+</div>
+<div class="pedido" style="margin-top:20px;position:relative">
+<pre id="pedidoTxt" style="white-space:pre-wrap">Read the "calculadora-da-reforma" kit at https://github.com/inematds/calculadora-da-reforma (the README explains everything, including the technical setup).
+Then, on this computer:
+1. Check that the Receita Federal code is the original (conferir-origem script) and tell me the result.
+2. See if I have what is needed (Java 25; Go only for the service invoice PDF). If something is missing, explain what and wait for my yes before downloading anything.
+3. Start the calculator and run the official example. Show me in plain English the tax on each item and why.
+4. Tell me how I would run the same test with my company's sales.
+Do not change anything in my system or my files. Show me the plan and wait for me to say yes.</pre>
+<button class="btn" id="copiarPedido" style="margin-top:10px">Copy the prompt</button>
+</div>
+<div class="card" style="margin-top:16px"><h3>🛠️ Is it technical, and do you prefer to do it by hand?</h3><p>The commands, examples, pitfalls we found, and measurements are in the GitHub README.</p><p><a class="btn ghost" href="https://github.com/inematds/calculadora-da-reforma/blob/main/README.en.md" rel="noopener" target="_blank">View the technical setup</a></p></div>
+</div></section>
+<section id="base"><div class="wrap">
+<span class="chip">Where it comes from</span>
+<h2>The foundation is <span class="amb">official</span>; the kit is ours</h2>
+<p class="sub">The code belongs to the Receita Federal and was developed with Serpro. The kit (explanations, scripts, and examples) is from INEMA, which is not affiliated with the Receita.</p>
+<div class="grid g3">
+<div class="card"><h3>📜 The Ordinance</h3><p>Cotec Ordinance No. 342, dated 12/11/2026: authorizes opening the three repositories, records the verification codes for each initial version, and states that the publication provides no support and has no force of law.</p><p><a href="https://www.in.gov.br/web/dou/-/portaria-cotec-n-342-de-12-de-novembro-de-2026-744398356" rel="noopener" target="_blank">Official Gazette of the Union</a></p></div>
+<div class="card"><h3>📰 The announcement</h3><p>Receita explains why it made the code open: transparency, legal certainty, and an official component that can be connected to the systems companies already use.</p><p><a href="https://www.gov.br/receitafederal/pt-br/assuntos/noticias/2026/novembro/receita-federal-publica-primeiro-codigo-fonte-aberto-no-github-e-amplia-transparencia-da-reforma-tributaria" rel="noopener" target="_blank">Receita Federal news</a></p></div>
+<div class="card"><h3>💾 The three repositories</h3><p><a href="https://github.com/ReceitaFederal/calculadora-rtc-regime-regular" rel="noopener" target="_blank">Regular tax regime</a> · <a href="https://github.com/ReceitaFederal/calculadora-rtc-simples-nacional" rel="noopener" target="_blank">Simples Nacional</a> · <a href="https://github.com/ReceitaFederal/calculadora-rtc-gerador-danfse" rel="noopener" target="_blank">DANFSe Generator</a>. Use only this address: a copy from somewhere else may have been altered.</p></div>
+</div>
+</div></section>
+<section id="prova"><div class="wrap">
+<span class="chip">The proof</span>
+<h2>We ran it for real: <span class="amb">all three work</span>, and the test catches the error</h2>
+<p class="sub">As of 23/11/2026, on a regular computer running Linux, with the latest versions.</p>
+<div class="stats">
+<div class="stat"><b>R$ 56,76</b><span>of CBS in the Federal Revenue Service's official example (rice, beer, and school), matching what its documentation publishes.</span></div>
+<div class="stat"><b>R$ 72,88</b><span>in the same purchase, using the 11.3% CBS rate recommended by the TCU. Change one number, and the engine recalculates everything.</span></div>
+<div class="stat"><b>0,18 s</b><span>for the generator to turn a service invoice file into a ready-to-use PDF, with a QR Code.</span></div>
+</div>
+<div class="prova" style="margin-top:20px">
+<ol class="tl">
+<li><b>We checked the source.</b><br/><span class="mut">The validation code for the three initial versions on GitHub is identical to the one in the Diário Oficial.</span></li>
+<li><b>We deliberately put an error in an "example system".</b><br/><span class="mut">It charged the school without the 60% reduction: R$ 105,60 in CBS.</span></li>
+<li><b>The official engine test marked it "DIFFERENT".</b><br/><span class="mut">The Receita engine returned R$ 42,24, with this explanation: “Rate reduced by 60%, Art. 129”.</span></li>
+<li><b>And identified the incorrect entry.</b><br/><span class="mut">An item with the wrong product classification came back with the warning "NCM not linked" before it became an invoice.</span></li>
+</ol>
+<p class="rod">The numbers, versions, and pitfalls we encountered along the way are in <a href="https://github.com/inematds/calculadora-da-reforma/blob/main/kit/MEDICOES.md" rel="noopener" target="_blank">MEDICOES.md</a> (in Portuguese).</p>
+</div>
+</div></section>
+<section id="faq"><div class="wrap">
+<span class="chip">Common questions</span>
+<h2>Before you <span class="amb">get started</span></h2>
+<div class="grid g2">
+<div class="card"><h3>Do I need to know how to code?</h3><p>No. You paste in the request, and the AI does the rest. For your software vendor or IT team, the README has the commands.</p></div>
+<div class="card"><h3>Is this a Receita website for looking things up?</h3><p>No. It’s a program that runs on your computer. Nothing you calculate leaves your machine.</p></div>
+<div class="card"><h3>If the engine gives a value, can I use it on the invoice?</h3><p>It’s a strong reference, but it isn’t law, and in 2027 the result is labeled “simulated” until the official rates are entered. Use it to check your calculations, and talk to your accountant.</p></div>
+<div class="card"><h3>How much does it cost?</h3><p>Nothing. The Receita code is open source (MIT), and the kit and this guide are free.</p></div>
+<div class="card"><h3>Does it work for businesses under Simples?</h3><p>Yes, there's a calculator just for Simples. It needs the effective tax rate, which comes from the monthly tax calculation (PGDAS-D).</p></div>
+<div class="card"><h3>Can I sell a product made with this?</h3><p>The MIT license allows this. You just can’t use Receita’s name or symbols to suggest the product is official, and you’re responsible for the calculation.</p></div>
+</div>
+<p class="fonte" style="margin-top:22px">And you: does your company’s system already calculate 2027 CBS, or are you still trusting it without checking? Free at inema.club, right on the web.</p>
+</div></section>
+</main>
+<footer>
+<div class="wrap">
+<div class="pill">Federal Revenue Service · MIT code</div><div class="pill">Java 25</div><div class="pill">Go</div><div class="pill">Python 3</div>
+<p style="margin-top:18px">Open calculator · unofficial INEMA kit based on Receita Federal’s open-source code · free at inema.club, right on the web ·
+      <a href="https://github.com/inematds/calculadora-da-reforma">inematds/calculadora-da-reforma</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+  (function(){
+    var KEY='calculadora-da-reforma-theme';
+    var b=document.body, t=document.getElementById('themeToggle');
+    try{ if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; } }catch(e){}
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      try{ localStorage.setItem(KEY, light?'light':'dark'); }catch(e){}
+    });
+  })();
+  (function(){
+    var bt=document.getElementById('copiarPedido'), tx=document.getElementById('pedidoTxt');
+    if(!bt||!tx) return;
+    bt.addEventListener('click',function(){
+      try{ navigator.clipboard.writeText(tx.textContent).then(function(){ bt.textContent='Copiado ✓'; setTimeout(function(){bt.textContent='Copiar o pedido';},2000); }); }catch(e){}
+    });
+  })();
+</script>
+</body>
+<link href="https://inematds.github.io/calculadora-da-reforma/guia/" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/calculadora-da-reforma/guia/en/" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/calculadora-da-reforma/guia/es/" hreflang="es" rel="alternate"/></head></html>
