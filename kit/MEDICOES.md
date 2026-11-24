@@ -43,6 +43,19 @@ Bate com o total publicado no `docs/exemplos.md` do repositório oficial.
 - `go build` + `go test ./...`: 11 pacotes com teste, todos ok.
 - XML fictício (`exemplos/nfse-exemplo.xml`) → PDF de 1 página, 79 KB, em **0,18 s**, com QR Code e a marca "NFS-e SEM VALIDADE JURÍDICA" (ambiente de homologação). Sem canhoto: `?canhoto=false`.
 
+## Repercussão (GitHub, 23/11/2026)
+
+| Repositório | Estrelas | Forks | Issues abertas |
+|---|---|---|---|
+| regime regular | 1.022 | 262 | 16 |
+| Simples Nacional | 741 | 195 | 6 |
+| gerador de DANFSe | 599 | 179 | 13 |
+| **Total** | **2.362** | **636** | **35** |
+
+## Planilha (CSV) no teste do motor
+
+`kit/exemplos/minhas-vendas.csv` (arroz, mensalidade escolar com o valor errado de um sistema, carne com código errado) → arroz "igual", escola "DIFERENTE em vCBS, vIBS" (motor R$ 42,24 × sistema R$ 105,60), carne barrada com REG-011. Rodado em 23/11/2026.
+
 ## Armadilhas achadas (e o que o kit faz)
 
 1. O README do regime regular não manda criar `calculadora/db`; sem a pasta, o `flyway:migrate` falha com `SQLITE_CANTOPEN`. O `subir-calculadoras.sh` cria.

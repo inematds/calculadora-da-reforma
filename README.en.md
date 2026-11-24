@@ -73,6 +73,8 @@ python3 kit/scripts/teste_do_motor.py kit/exemplos/operacao-oficial.json
 # 4. Official engine test: compare against what YOUR system calculated
 python3 kit/scripts/teste_do_motor.py kit/exemplos/operacao-oficial.json --meu kit/exemplos/meu-sistema-exemplo.json
 
+python3 kit/scripts/teste_do_motor.py kit/exemplos/minhas-vendas.csv --data 2027-03-10   # your spreadsheet (Excel → CSV, ; separator)
+
 # 5. CBS rate scenarios (8.8% from the official example × 11.3% from the TCU)
 python3 kit/scripts/teste_do_motor.py kit/exemplos/operacao-oficial.json --cbs 8.8 11.3
 

@@ -73,6 +73,8 @@ python3 kit/scripts/teste_do_motor.py kit/exemplos/operacao-oficial.json
 # 4. Prueba del motor oficial: comparar con lo que calculó TU sistema
 python3 kit/scripts/teste_do_motor.py kit/exemplos/operacao-oficial.json --meu kit/exemplos/meu-sistema-exemplo.json
 
+python3 kit/scripts/teste_do_motor.py kit/exemplos/minhas-vendas.csv --data 2027-03-10   # tu planilla (Excel → CSV, separador ;)
+
 # 5. Escenarios de tasa de la CBS (8,8% del ejemplo oficial × 11,3% del TCU)
 python3 kit/scripts/teste_do_motor.py kit/exemplos/operacao-oficial.json --cbs 8.8 11.3
 

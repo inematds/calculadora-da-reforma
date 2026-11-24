@@ -5,6 +5,7 @@ Uso:
   python3 kit/scripts/teste_do_motor.py OPERACAO.json                     # só calcula e mostra
   python3 kit/scripts/teste_do_motor.py OPERACAO.json --meu MEU.json      # compara com o seu sistema
   python3 kit/scripts/teste_do_motor.py OPERACAO.json --cbs 8.8 11.3      # mesma nota, alíquotas de CBS diferentes
+  python3 kit/scripts/teste_do_motor.py minhas-vendas.csv                 # planilha (Excel → CSV): já traz o que o seu sistema calculou
 Opções: --url (padrão http://127.0.0.1:8080/api/calculadora) --tolerancia 0.01 (R$)
 
 MEU.json = o que o SEU sistema (ERP, planilha, emissor) calculou, por número do item:
@@ -48,15 +49,52 @@ def total(resp):
     return (t.get("gCBS") or {}).get("vCBS"), (t.get("gIBS") or {}).get("vIBS")
 
 
+def de_planilha(caminho, a):
+    """Planilha CSV (uma linha por item) -> (operacao, meu). Colunas: item;descricao;ncm;nbs;cst;cClassTrib;base;cbs_sistema;ibs_sistema"""
+    import csv
+    txt = open(caminho, encoding="utf-8-sig").read()
+    sep = ";" if txt.count(";") >= txt.count(",") else ","
+    itens, meu = [], {}
+    for lin in csv.DictReader(txt.splitlines(), delimiter=sep):
+        lin = {k.strip(): (v or "").strip() for k, v in lin.items() if k}
+        if not lin.get("item"):
+            continue
+        num = lin["item"]
+        it = {"numero": int(num), "cst": lin["cst"], "cClassTrib": lin["cClassTrib"],
+              "baseCalculo": float(lin["base"].replace(".", "").replace(",", ".") if "," in lin["base"] else lin["base"]),
+              "aliquotasNominais": {"cbs": a.aliq_cbs, "ibsEstadual": a.aliq_ibs_uf, "ibsMunicipal": a.aliq_ibs_mun}}
+        if lin.get("ncm"):
+            it["ncm"] = lin["ncm"]
+        if lin.get("nbs"):
+            it["nbs"] = lin["nbs"]
+        itens.append(it)
+        s = {k: lin[c].replace(",", ".") for k, c in (("vCBS", "cbs_sistema"), ("vIBS", "ibs_sistema")) if lin.get(c)}
+        if s:
+            meu[num] = s
+    op = {"id": "planilha", "versao": "1.0.0", "dhFatoGerador": a.data + "T10:00:00-03:00",
+          "municipio": a.municipio, "uf": a.uf, "itens": itens}
+    return op, meu
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("operacao")
+    ap.add_argument("operacao", help="operação .json, ou planilha .csv (ver kit/exemplos/minhas-vendas.csv)")
+    ap.add_argument("--data", default="2027-01-15", help="(planilha) data do fato gerador AAAA-MM-DD")
+    ap.add_argument("--uf", default="RS", help="(planilha) UF da operação")
+    ap.add_argument("--municipio", type=int, default=4314902, help="(planilha) código IBGE do município")
+    ap.add_argument("--aliq-cbs", type=float, default=8.8, help="(planilha) alíquota da CBS em %%")
+    ap.add_argument("--aliq-ibs-uf", type=float, default=0.05)
+    ap.add_argument("--aliq-ibs-mun", type=float, default=0.05)
     ap.add_argument("--meu")
     ap.add_argument("--cbs", nargs="+", type=float)
     ap.add_argument("--url", default="http://127.0.0.1:8080/api/calculadora")
     ap.add_argument("--tolerancia", default="0.01")
     a = ap.parse_args()
-    op = json.load(open(a.operacao, encoding="utf-8"))
+    meu_csv = {}
+    if a.operacao.lower().endswith(".csv"):
+        op, meu_csv = de_planilha(a.operacao, a)
+    else:
+        op = json.load(open(a.operacao, encoding="utf-8"))
 
     if a.cbs:
         print(f"{'CBS %':>7} {'total CBS (R$)':>15} {'total IBS (R$)':>15}")
@@ -72,7 +110,7 @@ def main():
 
     resp = calcula(a.url, op)
     motor = itens(resp)
-    meu = json.load(open(a.meu, encoding="utf-8")) if a.meu else {}
+    meu = json.load(open(a.meu, encoding="utf-8")) if a.meu else meu_csv
     tol = Decimal(a.tolerancia)
     ruins = 0
     print(f"{'item':>4} {'estado':<24} {'CBS motor':>10} {'IBS motor':>10}" + (f" {'CBS seu':>9} {'IBS seu':>9}  resultado" if meu else ""))
