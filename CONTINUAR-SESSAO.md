@@ -22,3 +22,11 @@ Pedido do Nei (23/11): repo + projeto explicando os 3 repos da Receita (RTC regi
 - PRÓXIMO 4: CONTINUAR.md nas pastas explicavideos/textos/calculadora-da-reforma-lives4 e -lives8 (modelo: textos/sem-cara-de-ia-lives8/CONTINUAR.md; Metricool lives4→inema.tds IG+TikTok, lives8→VIBE só TikTok inema.prompts; embed #video no guia PT/EN/ES + README; portal de vídeo; resposta no tópico INEMA.VIBE) + `python3 ~/projetos/wifi/continua/continua.py --add ...` para cada.
 - PRÓXIMO 5: memória project_calculadora_da_reforma.md + linha no MEMORY.md + PRODUCOES-VIDEO.md.
 - Cadeias de vídeo rodando: systemctl --user status ev-calculadora-reforma-lives4 / -lives8; cadeia.log nas pastas.
+
+## Atualização 23:12 — fase 1 FECHADA
+- Revisor: R2 reprovou 7 (custo da assinatura, dados pela IA, vídeo vazio) → d33db7c; R3 (mesma persona/lista) aprovou 8 → 8f0adbd (CST). Notas no revisor-nota.
+- Portal publicado: portal 6b6cc1c, inemabuscas d472cc6, inemapro 9e7ee03 (título do quadro encurtado para 90).
+- Telegram INEMA.VIBE: tópico 4345 https://t.me/c/3650752323/4345, MENU msg 4363.
+- CONTINUAR.md nas pastas -lives4 (guia+portal+Metricool inema.tds IG/TikTok) e -lives8 (só README+Metricool VIBE TikTok); continua msg 681 e 682.
+- Memória wifi project_calculadora_da_reforma.md + MEMORY.md + 2 linhas no PRODUCOES-VIDEO.md.
+- Resta só a fase 2 dos vídeos, pelo vigia.
