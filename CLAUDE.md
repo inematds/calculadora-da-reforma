@@ -9,5 +9,6 @@ Nunca usar nome/símbolo da Receita como endosso; nunca copiar o código da Rece
 When I correct you, or you catch yourself making a mistake: before continuing, add the lesson as a one-line rule at the TOP of the Lessons section below.
 
 ## Lessons
+- "Publicado" = o conteúdo novo está no ar (grep na página), não só HTTP 200: o Pages falhou calado de 23 a 24/11.
 - Guia de kit sobre programa de terceiros: dizer onde baixar e se há versão online oficial; o Nei procurou e não achou (24/11).
 - Antes de Write em arquivo de memória ou registro (wifi/memory, PRODUCOES-VIDEO), leia: outra sessão pode já ter criado (23/11: sobrescrevi project_calculadora_da_reforma.md e recuperei pelo file-history).
