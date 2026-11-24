@@ -228,5 +228,6 @@
 "c787b6311630b0bc": "El kit, esta guía y el código de la Receita (licencia libre MIT) son gratis. La forma más fácil usa Claude Code o Codex, que vienen con la suscripción paga de Claude o ChatGPT. Sin IA, el área de TI puede ejecutar todo sin costo de programa.",
 "cf241018007c865b": "El video explicativo de este kit está en producción y se incluirá aquí cuando se publique. Mientras tanto, los pasos están justo abajo, en \"Cómo empezar\".",
 "c7d7a106fc06373b": "Los programas de la Receita funcionan en los tres, y sus repositorios incluyen los comandos para Windows. Nosotros solo probamos en Linux. Los accesos directos del kit son para Linux y Mac, así que en Windows la IA puede necesitar un paso más: sigue los comandos para Windows de la propia Receita y tú revisas la misma tabla al final.",
-"64f2df84d3ce57f5": "Video en producción"
+"64f2df84d3ce57f5": "Video en producción",
+"74a95eca59a54b2a": "Muestra el cálculo elemento por elemento, con «igual» o «diferente». Para tus ventas, completa la hoja de cálculo modelo del kit (puedes hacerlo en Excel y guardarla como CSV) con lo que calculó tu sistema, y la IA lo compara. Para cada venta, la hoja pide el código del producto (NCM) o del servicio (NBS), el código de la situación tributaria (CST), la nueva clasificación del impuesto (cClassTrib), la base de cálculo del elemento y la CBS y el IBS que indicó tu sistema. Todo eso está en el XML de la factura o en tu sistema de facturación."
 }

@@ -228,5 +228,6 @@
 "c787b6311630b0bc": "The kit, this guide, and the tax agency’s code (MIT free license) are free. The easiest way uses Claude Code or Codex, which come with a paid Claude or ChatGPT subscription. Without AI, your IT team can run everything at no software cost.",
 "cf241018007c865b": "The explainer video for this kit is in production and will appear here when it’s published. In the meantime, the step-by-step instructions are below under \"How to get started.\"",
 "c7d7a106fc06373b": "The tax agency’s programs run on all three, and its repositories include commands for Windows. We tested only on Linux. The kit’s shortcuts are for Linux and Mac, so on Windows the AI may need an extra step: it follows the tax agency’s own Windows commands, and you can check the same table at the end.",
-"64f2df84d3ce57f5": "Video in production"
+"64f2df84d3ce57f5": "Video in production",
+"74a95eca59a54b2a": "It shows the calculation item by item, with “match” or “mismatch.” For your sales, fill out the kit’s sample spreadsheet with what your system calculated (you can use Excel and save it as CSV), and the AI compares the results. For each sale, the spreadsheet asks for the product code (NCM) or service code (NBS), the tax status code (CST), the new tax classification (cClassTrib), the item’s tax base, and the CBS and IBS calculated by your system. You can find all of this in the invoice XML or in your invoicing system."
 }
