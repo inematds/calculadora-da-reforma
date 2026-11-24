@@ -32,6 +32,23 @@ Bate com o total publicado no `docs/exemplos.md` do repositório oficial.
 - No endpoint sem observabilidade (`/regime-geral`), a operação inteira volta com HTTP 422 por causa do item 4.
 - Memória de cálculo do item 3, como sai do motor: "Operação de consumo com enquadramento legal em Art. 129, tributada conforme Alíquota reduzida em 60%. A base de cálculo utilizada é de R$ 1.200,00, com alíquota de 8,80%, sendo que esse regime define uma redução de 60,00% na alíquota."
 
+## Nota de supermercado real em janeiro de 2027 (rodado em 24/11/2026, regime regular 1.7.2)
+
+NFC-e real de 06/11/2026, supermercado de Canela/RS, 121 linhas, R$ 1.512,15 (dados pessoais e da loja fora). Transcrita em `exemplos/supermercado-janeiro-itens.py` (a soma confere com o total da nota). Entrada e resposta: `exemplos/operacao-supermercado-janeiro-cbs-8-8.json`, `...-11-3.json`, `resposta-supermercado-janeiro-*.json`. Data do fato gerador 15/01/2027, município 4304408, IBS 0,05% + 0,05%.
+
+A nota não traz NCM: o INEMA escolheu o código de cada produto e conferiu o enquadramento no texto do anexo na própria base do programa. Supõe loja no regime regular e usa o valor de cada linha como base.
+
+| Grupo | Produtos | Base | CBS 8,8% | CBS 11,3% |
+|---|---|---|---|---|
+| Anexo I, alíquota zero (Art. 125) | frango, leite UHT, café, açúcar, sal, farinha de trigo, sagu | 396,04 | 0,00 | 0,00 |
+| Anexo VII, redução de 60% (Art. 135) | bebida láctea, iogurte, óleo de soja, amido de milho | 173,74 | 6,13 | 7,87 |
+| Alíquota cheia | leite condensado, creme de leite, gelatina, conservas, molhos etc. | 942,37 | 83,01 | 106,43 |
+| **Total** | 121 itens, todos `CALCULO_SIMULADO` | **1.512,15** | **89,14** | **114,30** |
+
+IBS R$ 0,70 nas duas. Destaques: 81 leites condensados (404,19) → CBS 35,57 / 45,67; 81 cremes de leite (201,69) → 17,75 / 22,79; 19 óleos de soja (132,81) → 4,67 com 8,8% (seriam 11,69 sem a redução).
+
+Armadilhas achadas: NCM 0207.14.00 não existe mais (REG-002), o certo é 0207.14.11 (peito) e 0207.14.12 (coxa e sobrecoxa); milho/ervilha em conserva e batata palha NÃO entram no item 16 do Anexo VII (só hortícola cozida sem sal nem outro ingrediente); pão de alho (1905.90.90) e gelatina (2106.90.90) aparecem ligados ao Anexo I, mas só para pão francês e fórmula infantil.
+
 ## Simples Nacional
 
 - Compilação: 5 s (reaproveitando o banco do regime regular). Cálculo: 0,27 s.
